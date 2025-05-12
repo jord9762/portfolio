@@ -1,35 +1,294 @@
 // script.js
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('nav ul li a').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href').substring(1);
-    const targetSection = document.getElementById(targetId);
-    if (targetSection) {
-      window.scrollTo({
-        top: targetSection.offsetTop - 20,
-        behavior: 'smooth'
-      });
-    }
-  });
+// DOM elements
+const header = document.querySelector('header');
+const navLinks = document.querySelectorAll('nav ul li a');
+const sections = document.querySelectorAll('main section');
+const contactForm = document.getElementById('contactForm');
+const themeToggle = document.getElementById('themeToggle');
+const htmlElement = document.documentElement;
+
+// Initialize when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+  initSmoothScrolling();
+  initScrollSpy();
+  initContactForm();
+  initAnimations();
+  highlightCurrentNavLink();
+  initThemeToggle();
 });
 
-// Optional: highlight nav link of the current section as user scrolls
-window.addEventListener('scroll', () => {
-  const scrollPos = window.scrollY || window.pageYOffset;
+// Smooth scrolling for navigation links
+function initSmoothScrolling() {
+  navLinks.forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      
+      if (targetSection) {
+        const headerHeight = header.offsetHeight;
+        window.scrollTo({
+          top: targetSection.offsetTop - headerHeight,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+}
 
-  document.querySelectorAll('main section').forEach(section => {
-    if (
-      scrollPos >= section.offsetTop - 60 &&
-      scrollPos < section.offsetTop + section.offsetHeight
-    ) {
-      document.querySelectorAll('nav ul li a').forEach(a => {
-        a.classList.remove('active');
-        if (a.getAttribute('href').substring(1) === section.id) {
-          a.classList.add('active');
+// Advanced scroll spy for active navigation highlighting
+function initScrollSpy() {
+  window.addEventListener('scroll', debounce(() => {
+    highlightCurrentNavLink();
+    
+    // Header shadow effect on scroll
+    if (window.scrollY > 10) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }, 20));
+}
+
+// Determine which section is currently in view
+function highlightCurrentNavLink() {
+  let scrollPosition = window.scrollY || window.pageYOffset;
+  const headerHeight = header.offsetHeight;
+  
+  // Find the current section
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - headerHeight - 20;
+    const sectionBottom = sectionTop + section.offsetHeight;
+    
+    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+      // Remove active class from all links
+      navLinks.forEach(link => link.classList.remove('active'));
+      
+      // Add active class to corresponding link
+      const currentLink = document.querySelector(`nav ul li a[href="#${section.id}"]`);
+      if (currentLink) {
+        currentLink.classList.add('active');
+      }
+    }
+  });
+}
+
+// Form validation and submission handling
+function initContactForm() {
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Simple form validation
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      if (!name || !email || !message) {
+        showNotification('Please fill in all fields', 'error');
+        return;
+      }
+      
+      if (!isValidEmail(email)) {
+        showNotification('Please enter a valid email address', 'error');
+        return;
+      }
+      
+      // Simulate form submission (replace with actual submission code)
+      showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+      this.reset();
+    });
+  }
+}
+
+// Email validation helper
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// Initialize animations for page elements
+function initAnimations() {
+  // Reveal elements as they enter the viewport
+  const revealElements = document.querySelectorAll('.timeline-item, .portfolio-item, .cert-item');
+  
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
         }
       });
-    }
+    }, { threshold: 0.2 });
+    
+    revealElements.forEach(el => {
+      el.classList.add('reveal-element');
+      revealObserver.observe(el);
+    });
+  } else {
+    // Fallback for browsers without IntersectionObserver
+    revealElements.forEach(el => el.classList.add('revealed'));
+  }
+}
+
+// Create and display notification messages
+function showNotification(message, type = 'info') {
+  // Remove any existing notifications
+  const existingNotification = document.querySelector('.notification');
+  if (existingNotification) {
+    existingNotification.remove();
+  }
+  
+  // Create new notification
+  const notification = document.createElement('div');
+  notification.className = `notification ${type}`;
+  notification.innerHTML = `
+    <div class="notification-content">
+      <p>${message}</p>
+      <button class="notification-close">&times;</button>
+    </div>
+  `;
+  
+  document.body.appendChild(notification);
+  
+  // Show with animation
+  setTimeout(() => {
+    notification.classList.add('show');
+  }, 10);
+  
+  // Add close button functionality
+  const closeButton = notification.querySelector('.notification-close');
+  closeButton.addEventListener('click', () => {
+    notification.classList.remove('show');
+    setTimeout(() => notification.remove(), 300);
   });
-});
+  
+  // Auto-dismiss after 5 seconds
+  setTimeout(() => {
+    if (document.body.contains(notification)) {
+      notification.classList.remove('show');
+      setTimeout(() => notification.remove(), 300);
+    }
+  }, 5000);
+}
+
+// Utility function to debounce frequent events
+function debounce(func, delay) {
+  let timeout;
+  return function() {
+    const context = this;
+    const args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), delay);
+  };
+}
+
+// Add CSS for notification styling
+function addNotificationStyles() {
+  const styleEl = document.createElement('style');
+  styleEl.textContent = `
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      max-width: 400px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    .notification.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .notification-content {
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .notification.success .notification-content {
+      background-color: #10b981;
+      color: white;
+    }
+    
+    .notification.error .notification-content {
+      background-color: #ef4444;
+      color: white;
+    }
+    
+    .notification.info .notification-content {
+      background-color: #3b82f6;
+      color: white;
+    }
+    
+    .notification-close {
+      background: transparent;
+      border: none;
+      color: inherit;
+      font-size: 20px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    
+    .reveal-element {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .reveal-element.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  `;
+  document.head.appendChild(styleEl);
+}
+
+// Theme toggle functionality
+function initThemeToggle() {
+  // Check for saved user preference, first in localStorage, then prefer-color-scheme
+  const savedTheme = localStorage.getItem('theme') || 
+                    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  
+  // Apply the saved theme
+  setTheme(savedTheme);
+  
+  // Theme toggle button click event
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = htmlElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    // Add animation class
+    document.body.classList.add('theme-transition');
+    setTimeout(() => {
+      document.body.classList.remove('theme-transition');
+    }, 500);
+  });
+}
+
+// Apply theme to HTML element
+function setTheme(theme) {
+  htmlElement.setAttribute('data-theme', theme);
+  
+  // Update toggle button icon
+  const themeIcon = themeToggle.querySelector('i');
+  if (theme === 'dark') {
+    themeIcon.className = 'fas fa-sun';
+  } else {
+    themeIcon.className = 'fas fa-moon';
+  }
+}
+
+// Add the notification styles
+addNotificationStyles();

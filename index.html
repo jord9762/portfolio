@@ -1,55 +1,290 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Professional Portfolio</title>
+  <title>Jordan Reynoldson | GIS Specialist Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta name="description" content="Professional portfolio of Jordan Reynoldson, GIS Specialist" />
 </head>
 <body>
   <header>
-    <h1>Your Name</h1>
+    <div class="header-content">
+      <h1>Jordan Reynoldson</h1>
+      <p class="tagline">GIS Specialist</p>
+    </div>
     <nav>
       <ul>
-        <li><a href="#about">About Me</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#about" class="nav-link"><i class="fas fa-user"></i> About</a></li>
+        <li><a href="#education" class="nav-link"><i class="fas fa-graduation-cap"></i> Education</a></li>
+        <li><a href="#experience" class="nav-link"><i class="fas fa-briefcase"></i> Experience</a></li>
+        <li><a href="#portfolio" class="nav-link"><i class="fas fa-code"></i> Portfolio</a></li>
+        <li><a href="#skills" class="nav-link"><i class="fas fa-laptop-code"></i> Skills</a></li>
+        <li><a href="#certifications" class="nav-link"><i class="fas fa-certificate"></i> Certifications</a></li>
+        <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
+    <section id="hero">
+      <div class="hero-content">
+        <h2>Transforming Ideas Into Digital Reality</h2>
+        <p>Specialized in creating efficient, scalable, and user-friendly applications</p>
+        <div class="cta-buttons">
+          <a href="#portfolio" class="btn primary-btn">View My Work</a>
+          <a href="#contact" class="btn secondary-btn">Get In Touch</a>
+        </div>
+      </div>
+    </section>
+
     <section id="about">
       <h2>About Me</h2>
-      <p>Professional background, core values, and goals.</p>
+      <div class="section-content">
+        <div class="profile-image">
+          <div class="image-placeholder">
+            <i class="fas fa-user-circle"></i>
+          </div>
+        </div>
+        <div class="about-text">
+          <p>As a passionate Software Engineer with over 8 years of experience, I specialize in building robust web applications that solve real-world problems. My journey in technology began at Stanford University and has since evolved through roles at innovative startups and established tech companies.</p>
+          <p>I thrive in collaborative environments and enjoy architecting elegant solutions to complex challenges. My approach combines technical expertise with strong communication skills to deliver products that exceed client expectations.</p>
+          <p>When I'm not coding, you'll find me contributing to open-source projects, mentoring junior developers, or exploring new technologies to stay at the cutting edge of our rapidly evolving industry.</p>
+        </div>
+      </div>
     </section>
 
     <section id="education">
       <h2>Education</h2>
-      <p>List your academic credentials here.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2015 - 2017</div>
+          <div class="timeline-content">
+            <h3>Master of Science in Computer Science</h3>
+            <p class="timeline-institution">Stanford University</p>
+            <p>Specialized in Artificial Intelligence and Machine Learning. Thesis on "Neural Network Optimization Techniques for Real-time Data Processing."</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2011 - 2015</div>
+          <div class="timeline-content">
+            <h3>Bachelor of Science in Computer Science</h3>
+            <p class="timeline-institution">Massachusetts Institute of Technology</p>
+            <p>Graduated with honors. Active member of the Algorithmic Research Group and Web Development Club.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section id="experience">
-      <h2>Experience</h2>
-      <p>Highlight past roles and accomplishments.</p>
+      <h2>Professional Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2021 - Present</div>
+          <div class="timeline-content">
+            <h3>Senior Software Engineer</h3>
+            <p class="timeline-institution">TechInnovate Inc.</p>
+            <ul>
+              <li>Lead a team of 6 developers in building and maintaining a SaaS platform serving 500,000+ users</li>
+              <li>Implemented microservice architecture that reduced system latency by 40%</li>
+              <li>Spearheaded migration from monolithic to containerized architecture using Docker and Kubernetes</li>
+              <li>Established CI/CD pipelines that reduced deployment time from days to hours</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2017 - 2021</div>
+          <div class="timeline-content">
+            <h3>Full-Stack Developer</h3>
+            <p class="timeline-institution">DataFlex Solutions</p>
+            <ul>
+              <li>Developed responsive web applications using React, Node.js and PostgreSQL</li>
+              <li>Built RESTful APIs consumed by mobile and web clients</li>
+              <li>Implemented automated testing that increased code coverage by 75%</li>
+              <li>Optimized database queries resulting in 60% faster page load times</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section id="portfolio">
       <h2>Portfolio</h2>
-      <p>Project showcases, links, and descriptions.</p>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <div class="image-placeholder">
+              <i class="fas fa-code"></i>
+            </div>
+          </div>
+          <div class="portfolio-details">
+            <h3>Electoral Roll Text Recognition Tool</h3>
+            <p>A fully responsive e-commerce solution with secure payment processing and inventory management.</p>
+            <p class="portfolio-tech">React, Node.js, MongoDB, Stripe API</p>
+            <div class="portfolio-links">
+              <a href="#" class="btn small-btn">Live Demo</a>
+              <a href="#" class="btn small-btn">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <div class="image-placeholder">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+          </div>
+          <div class="portfolio-details">
+            <h3>Strava Premium Application</h3>
+            <p>Mobile application for tracking fitness goals, nutrition, and health metrics with data visualization.</p>
+            <p class="portfolio-tech">Flutter, Firebase, Chart.js</p>
+            <div class="portfolio-links">
+              <a href="#" class="btn small-btn">Live Demo</a>
+              <a href="#" class="btn small-btn">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <div class="image-placeholder">
+              <i class="fas fa-chart-line"></i>
+            </div>
+          </div>
+          <div class="portfolio-details">
+            <h3>Retro 90's Game</h3>
+            <p>Interactive dashboard for financial data analysis with real-time updates and customizable widgets.</p>
+            <p class="portfolio-tech">Vue.js, Express, PostgreSQL, D3.js</p>
+            <div class="portfolio-links">
+              <a href="#" class="btn small-btn">Live Demo</a>
+              <a href="#" class="btn small-btn">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="skills">
+      <h2>Technical Skills</h2>
+      <div class="skills-container">
+        <div class="skill-category">
+          <h3>Frontend Development</h3>
+          <ul class="skill-list">
+            <li>JavaScript (ES6+)</li>
+            <li>React.js</li>
+            <li>Vue.js</li>
+            <li>HTML5/CSS3</li>
+            <li>SASS/LESS</li>
+            <li>TypeScript</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Backend Development</h3>
+          <ul class="skill-list">
+            <li>Node.js</li>
+            <li>Python</li>
+            <li>Java</li>
+            <li>Express</li>
+            <li>Django</li>
+            <li>RESTful APIs</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Database & DevOps</h3>
+          <ul class="skill-list">
+            <li>MongoDB</li>
+            <li>PostgreSQL</li>
+            <li>MySQL</li>
+            <li>Docker</li>
+            <li>Kubernetes</li>
+            <li>AWS/Azure</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <section id="certifications">
       <h2>Certifications & Qualifications</h2>
-      <p>Relevant certificates and achievements.</p>
+      <div class="cert-grid">
+        <div class="cert-item">
+          <div class="cert-icon"><i class="fas fa-award"></i></div>
+          <h3>AWS Certified Solutions Architect</h3>
+          <p>Amazon Web Services, 2023</p>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon"><i class="fas fa-award"></i></div>
+          <h3>Google Cloud Professional Developer</h3>
+          <p>Google, 2022</p>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon"><i class="fas fa-award"></i></div>
+          <h3>Certified Scrum Master</h3>
+          <p>Scrum Alliance, 2021</p>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon"><i class="fas fa-award"></i></div>
+          <h3>Microsoft Certified: Azure Developer</h3>
+          <p>Microsoft, 2020</p>
+        </div>
+      </div>
+    </section>
+    
+    <section id="contact">
+      <h2>Get In Touch</h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <p>alex.morgan@example.com</p>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <p>(555) 123-4567</p>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>San Francisco, CA</p>
+          </div>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="contact-form">
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn primary-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Your Name. All rights reserved.</p>
+    <div class="footer-content">
+      <div class="footer-nav">
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <p>&copy; 2025 Alex Morgan. All rights reserved.</p>
+    </div>
   </footer>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+    <i class="fas fa-moon"></i>
+  </button>
 
   <script src="script.js"></script>
 </body>
