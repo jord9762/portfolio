@@ -4,7 +4,6 @@
 const header = document.querySelector('header');
 const navLinks = document.querySelectorAll('nav ul li a');
 const sections = document.querySelectorAll('main section');
-const contactForm = document.getElementById('contactForm');
 const themeToggle = document.getElementById('themeToggle');
 const htmlElement = document.documentElement;
 
@@ -12,7 +11,6 @@ const htmlElement = document.documentElement;
 document.addEventListener('DOMContentLoaded', () => {
   initSmoothScrolling();
   initScrollSpy();
-  initContactForm();
   initAnimations();
   highlightCurrentNavLink();
   initThemeToggle();
@@ -78,26 +76,85 @@ function highlightCurrentNavLink() {
 function initContactForm() {
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Simple form validation
+      // Validate the form first
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const message = document.getElementById('message').value;
       
       if (!name || !email || !message) {
+        e.preventDefault();
         showNotification('Please fill in all fields', 'error');
         return;
       }
       
       if (!isValidEmail(email)) {
+        e.preventDefault();
         showNotification('Please enter a valid email address', 'error');
         return;
       }
       
-      // Simulate form submission (replace with actual submission code)
-      showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-      this.reset();
+      // If we're in development or our AJAX fails, we'll let the form submit naturally
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        console.log('Development mode detected - using traditional form submission');
+        return; // Let the form submit naturally
+      }
+      
+      // Prevent default for AJAX submission
+      e.preventDefault();
+      
+      // Show a loading notification
+      showNotification('Sending your message...', 'info');
+      
+      // Update button state to show loading
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const btnText = submitBtn.querySelector('.btn-text');
+      const btnLoading = submitBtn.querySelector('.btn-loading');
+      
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline-block';
+      submitBtn.disabled = true;
+      
+      // Get the form data
+      const formData = new FormData(contactForm);
+      
+      // Use XHR as a backup to fetch, as it handles CORS differently
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', contactForm.action);
+      xhr.setRequestHeader('Accept', 'application/json');
+      
+      xhr.onload = function() {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          console.log('Form submitted successfully via XHR');
+          showNotification('Your message has been sent successfully!', 'success');
+          contactForm.reset();
+          
+          // Reset button state
+          btnText.style.display = 'inline-block';
+          btnLoading.style.display = 'none';
+          submitBtn.disabled = false;
+          
+          // Redirect after a short delay
+          setTimeout(() => {
+            window.location.href = formData.get('_next') || 'thank-you.html';
+          }, 2000);
+        } else {
+          console.error('XHR Error:', xhr.responseText);
+          // If XHR fails, try traditional form submission
+          console.log('Falling back to traditional form submission');
+          showNotification('Redirecting to form processor...', 'info');
+          contactForm.submit();
+        }
+      };
+      
+      xhr.onerror = function() {
+        console.error('XHR Network Error');
+        // If XHR fails, try traditional form submission
+        console.log('Falling back to traditional form submission');
+        showNotification('Redirecting to form processor...', 'info');
+        contactForm.submit();
+      };
+      
+      xhr.send(formData);
     });
   }
 }
@@ -106,6 +163,35 @@ function initContactForm() {
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
+}
+
+// Check if Formspree is properly configured
+function checkFormspreeEndpoint() {
+  if (!contactForm) return;
+  
+  const formspreeAction = contactForm.action;
+  if (!formspreeAction || !formspreeAction.includes('formspree.io')) {
+    console.warn('Formspree endpoint not properly configured:', formspreeAction);
+    return;
+  }
+  
+  // Make a HEAD request to check if the endpoint is valid
+  fetch(formspreeAction, {
+    method: 'HEAD',
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log('Formspree endpoint is valid and accessible');
+    } else {
+      console.warn('Formspree endpoint returned status:', response.status);
+    }
+  })
+  .catch(error => {
+    console.error('Error checking Formspree endpoint:', error);
+  });
 }
 
 // Initialize animations for page elements
