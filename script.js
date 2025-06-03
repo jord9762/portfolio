@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
   highlightCurrentNavLink();
   initThemeToggle();
-  initPdfExport();
 });
 
 // Smooth scrolling for navigation links
@@ -380,6 +379,7 @@ function setTheme(theme) {
 // Add the notification styles
 addNotificationStyles();
 
+// PDF export functionality has been completely removed
 // Initialize PDF Export functionality
 function initPdfExport() {
   // PDF export functionality is temporarily disabled as we're using a direct link
