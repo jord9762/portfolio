@@ -12,7 +12,10 @@
   <title>Jordan Reynoldson | GIS Specialist Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="pdf-style.css" media="print" />
   <meta name="description" content="Professional portfolio of Jordan Reynoldson, GIS Specialist" />
+  <!-- PDF Export Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
   <header>
@@ -37,9 +40,10 @@
     <section id="hero" style="background-image: url('https://res.cloudinary.com/dtfqkn1kr/image/upload/v1747048781/GISNetwork_s95pyy.png'); background-size: cover; background-position: center; width: 100%; max-width: 100%; margin: 0; padding: 0;">
       <div class="hero-content">
         <h2>Transforming Ideas Into Digital Reality</h2>
-        <p>Specialized in creating efficient, scalable, and user-friendly applications</p>
+        <p>Experienced in solving complex geospatial challenges</p>
         <div class="cta-buttons">
           <a href="#portfolio" class="btn primary-btn">View My Work</a>
+          <a href="https://raw.githubusercontent.com/jord9762/portfolio/main/Jordan%20reynoldson%20CV.pdf" id="pdf-export" class="btn primary-btn" download="Jordan_Reynoldson_CV.pdf" target="_blank">Download CV</a>
           <a href="#contact" class="btn secondary-btn">Contact Info</a>
         </div>
       </div>
@@ -52,8 +56,8 @@
           <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1747048315/Profile_Picture_tdoavi.png" alt="Profile Picture" style="width: 100%; border-radius: 50%;">
         </div>
         <div class="about-text">
-          <p>As a passionate GIS Specialist with over 3 years of experience, I specialise in using geospatial data to solve real-world problems. My journey in geospatial began at university where I studied geography at Nottingham Trent and GIS at the University of Leeds. Since then I have held roles as a GIS Technician and a Technical Specialist, primarily in the Utilities sector working for some of Britains biggest companies.</p>
-          <p>I thrive in collaborative environments and finding solutions to complex challenges. My approach combines technical expertise with strong communication skills to deliver products that exceed client expectations. I believe one of my greatest strengths lies in my versatility as I can call on GIS, FME and Python to take on any challenge.</p>
+          <p>A passionate GIS Specialist with over 3 years of experience, I specialise in using geospatial data to solve real-world problems. My journey in geospatial began at university where I studied Geography at Nottingham Trent, followed by GIS at the University of Leeds. Since then I have held roles as a GIS Technician and a Technical Specialist, primarily in the Utilities sector working for some of Britains biggest companies.</p>
+          <p>I thrive in fast paced environments and love helping people find solutions to complex challenges. My approach combines technical expertise with strong communication skills to deliver products that exceed client expectations. I believe one of my greatest strengths lies in my versatility as I can call on GIS, FME and Python to take on any challenge.</p>
           <p>When I'm not coding, you'll find me running, hiking, and exploring new technologies to stay up to date in our rapidly evolving industry.</p>
         </div>
       </div>
@@ -75,6 +79,7 @@
               <li>Web-based GIS</li>
               <li>Environmental Applications of GIS</li>
               <li>Programming for GIS</li>
+              <li>Dissertation: Crime and Links To Deprivation</li>
             </ul>
           </div>
         </div>
@@ -90,7 +95,7 @@
               <li>Advanced GIS Applications</li>
               <li>Remote Sensing</li>
               <li>Spatial Analysis</li>
-              <li>Geography Dissertation</li>
+              <li>Dissertation: Investigation of Peat Erosion In The Forest Of Bowland</li>
             </ul>
           </div>
         </div>
@@ -107,14 +112,15 @@
             <p class="timeline-institution">Avineon-Tensing</p>
             <p>In this role I worked 4.5 days per week as a GIS Consultant for Southern Water and 0.5 days per week on internal projects:</p>
             <ul>
-              <li>Assisted with Southern Water's transition from legacy AutoCAD systems to ArcGIS Enterprise</li>
-              <li>Handled Ticketdesk incidents ranging from data conversions using FME to debugging web applications built with FME Flow, ArcGIS Experience Builder, and ArcGIS Dashboards</li>
-              <li>Oversaw the Compliance Application Survey 123 Connect project from late development to Accepted Into Service (AIS)</li>
-              <li>Implemented a solution to shift media uploaded by site technicians from ArcGIS Enterprise to SharePoint</li>
-              <li>Led the Waste Water Alarms Application project to visually represent pumping station alarms using FME workspaces connected to Oracle databases and displaying live data in Experience Builder</li>
-              <li>Fixed critical bugs in the Wastewater/Pollutions Dashboard, including database connectivity and time discrepancy issues between GMT and BST</li>
-              <li>Achieved FME Certified Pro status during my first month</li>
-              <li>Assisted with promotional activities including supporting the Belfast AGI event and contributing to Tensing's FME UK Tour</li>
+              <li>Assisted with Southern Water's migration from legacy BAU (Business As Usual) Autodesk systems to ArcGIS Enterprise.</li>
+              <li>Handled Ticketdesk incidents ranging from data conversions using FME to debugging web applications built with FME Flow, ArcGIS Experience Builder, and ArcGIS Dashboards.</li>
+              <li>Oversaw the Compliance Application Survey 123 Connect project from late development to Accepted Into Service (AIS), project involved a combination of S123, FME Form, FME Flow, Python.</li>
+              <li>Implemented a solution to shift media uploaded by site technicians from ArcGIS Enterprise to SharePoint using a combination of FME and Python.</li>
+              <li>Helped implement an overhaul to Southern Waters legacy Waste Water Alarms Application project, to visually represent pumping station alarms using FME workspaces connected to Oracle databases and displaying live data in Experience Builder. Involved a combination of FME Form, FME Flow, ArcGIS ExB, SQL.</li>
+              <li>Fixed critical bugs in the Wastewater/Pollutions Dashboard, including database connectivity and time discrepancy issues between GMT and BST.</li>
+              <li>Developed a web-scraping tool utilising FME and Python, that extracted the most up to date cadastral data from government sources at monthly intervals. This replaced the old manual process which used to require a day of surveyor time.</li>
+              <li>Achieved FME Certified Pro status during my first month.</li>
+              <li>Assisted with promotional activities including supporting the Belfast AGI event and contributing material to Tensing's FME UK Tour.</li>
             </ul>
           </div>
         </div>
@@ -124,14 +130,15 @@
             <h3>GIS Technician</h3>
             <p class="timeline-institution">Fisher German</p>
             <ul>
-              <li>Crafted maps in ArcGIS Pro including site plans, referencing plans, ground investigation plans, access plans and drivetime maps</li>
-              <li>Executed data analysis and conversions using FME and Python, leveraging Python for requirements outside of FME's capabilities</li>
-              <li>Oversaw land referencing and spatial analyses for major projects like Anglian Water's Strategic Resource Options (SRO) scheme</li>
-              <li>Identified affected landowners, pinpointed special category land within search areas using FME, and conducted proximity analyses</li>
-              <li>Delivered clear demonstrations to stakeholders, fostering trust through effective communication</li>
-              <li>Created bespoke Survey 123 forms for ground teams utilizing QR codes, web maps and what3words</li>
-              <li>Developed FME apps to assist team members and non-GIS colleagues in performing high-level analysis</li>
-              <li>Honed strong GIS, FME, and communication skills, becoming highly proficient in FME within just two years</li>
+              <li>Crafted maps in ArcGIS Pro including site plans, referencing plans, ground investigation plans, access plans and drivetime maps.</li>
+              <li>Executed data analysis and conversions using FME and Python, leveraging Python for requirements outside of FME's capabilities.</li>
+              <li>Developed an FME flow application that could automate the generation of W3W points and access route data for a major National Grid project.</li>
+              <li>Oversaw FG's land referencing and spatial analyses for major projects like Anglian Water's Strategic Resource Options (SRO) scheme. Identified affected landowners, pinpointed special category land within search areas using FME, and conducted proximity analyses.</li>
+              <li>Delivered clear demonstrations to stakeholders, fostering trust through effective communication.</li>
+              <li>Created bespoke Survey 123 forms for ground teams utilizing QR codes, web maps and what3words.</li>
+              <li>Performed Erosion analysis at river pipes using Lidar to assess the rate of erosion in relation to pipeline installation.</li>
+              <li>Developed FME apps to assist team members and non-GIS colleagues in performing high-level analysis.</li>
+              <li>Honed strong GIS, FME, and communication skills, becoming highly proficient in FME within just two years.</li>
             </ul>
           </div>
         </div>
@@ -140,13 +147,18 @@
           <div class="timeline-content">
             <h3>Career Break - Side Projects</h3>
             <p class="timeline-institution">Self-Directed Development</p>
-            <h4>Text Recognition Tool For a Major Political Party (Mar 2025 - May 2025)</h4>
+            <h4>Text Recognition Tool For a Political Party (Feb 2025 - June 2025)</h4>
             <ul>
               <li>Created a Python solution using Tesseract OCR to scan electoral vote records from PDF format</li>
               <li>Developed a Flask application with interactive editing functionality for organized voter data</li>
               <li>Implemented geocoding functionality to plot data on maps and extract correct addresses for election mail merges</li>
+              <li>Designed a user-friendly interface for data editing and visualization</li>
+              <li>Ultimately the tool provided an innovative solution to handle voting data and reduced the time to process a document from 12.5 hours using the manual method to 18 minutes using the automated solution.</li>
+              <li>Packaged the tool as an executable for easy deployment and delivered training on use for non-technical staff.</li>
+
+
             </ul>
-            <h4>Strava Premium Tool (2024 - Present)</h4>
+            <h4>Strava Premium Tool (2024 - 2025)</h4>
             <ul>
               <li>Developed a custom web tool using Python, JavaScript, CSS, HTML, JSON, and PostgreSQL</li>
               <li>Created various data visualization charts using Plotly including pie charts, line graphs, and bar charts</li>
@@ -158,6 +170,10 @@
               <li>Created a 2D RPG game using Pygame, implementing animation, enemy AI, and game mechanics</li>
               <li>Designed and integrated databases for shop systems, stats, and dialogue</li>
               <li>Developed damage calculations, game states, UI/UX design, and story elements</li>
+              <li>Produced video content for the game, including trailers and gameplay footage</li>
+              <li>Linked the game with with strava data through SQL to have a version of the game where stats were based off real life activity (e.g., running distance, workout times, swimming distance etc.)</li>
+              <li>Produced devlogs for the game, including trailers and gameplay footage in order to track progress</li>
+
             </ul>
           </div>
         </div>
@@ -197,7 +213,7 @@
         </div>
         <div class="portfolio-item">
           <div class="portfolio-image">
-            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1747229403/pacman_gzakps.jpg" alt="JRPG Game" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1748963559/Portfolio_Image_lpreqb.png" alt="JRPG Game" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
           <div class="portfolio-details">
             <h3>Retro 90's Game</h3>

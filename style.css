@@ -174,6 +174,8 @@ nav ul li a:hover, nav ul li a.active {
   color: var(--primary-color);
 }
 
+/* CV download button styles removed as it's now part of the main CTA buttons */
+
 /* Hero Section */
 #hero {
   background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.8)), 
@@ -590,6 +592,105 @@ footer {
 
 .footer-nav a:hover {
   color: var(--primary-color);
+}
+
+/* Styles for PDF Generation */
+.generating-pdf {
+  /* Hide elements not needed in PDF */
+  & .theme-toggle,
+  & nav,
+  & footer {
+    display: none !important;
+  }
+  
+  /* Set light theme colors for better printing */
+  --primary-color: #2563eb;
+  --secondary-color: #0f172a;
+  --accent-color: #3b82f6;
+  --bg-color: #ffffff;
+  --text-color: #334155;
+  --heading-color: #0f172a;
+  --card-bg: #ffffff;
+  --dark-color: #0f172a;
+  --gray-color: #64748b;
+  --light-gray-color: #e2e8f0;
+
+  /* Optimize layout for PDF */
+  & section {
+    page-break-inside: avoid;
+    margin-bottom: 30px;
+  }
+  
+  & .hero-content {
+    color: #000;
+  }
+  
+  & .hero-content h2,
+  & .hero-content p {
+    color: #000;
+  }
+}
+
+/* PDF Export Button Loading Indicator */
+.pdf-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.pdf-loading-content {
+  background-color: var(--card-bg);
+  padding: 20px 40px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+}
+
+.pdf-loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: pdf-spinner 1s ease-in-out infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes pdf-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Download CV button styling */
+#pdf-export {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #1d4ed8 100%);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+  transform: translateY(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#pdf-export:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+}
+
+#pdf-export::before {
+  content: '\f1c1';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  margin-right: 8px;
 }
 
 /* Responsive Adjustments */

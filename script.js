@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
   highlightCurrentNavLink();
   initThemeToggle();
+  initPdfExport();
 });
 
 // Smooth scrolling for navigation links
@@ -378,3 +379,136 @@ function setTheme(theme) {
 
 // Add the notification styles
 addNotificationStyles();
+
+// Initialize PDF Export functionality
+function initPdfExport() {
+  // PDF export functionality is temporarily disabled as we're using a direct link
+  // This code is kept for future reference
+  /*
+  const pdfBtn = document.getElementById('pdf-export');
+  
+  if (pdfBtn) {
+    console.log('PDF Export button found, adding event listener');
+    
+    // Remove any existing listeners to avoid duplicates
+    const newBtn = pdfBtn.cloneNode(true);
+    if (pdfBtn.parentNode) {
+      pdfBtn.parentNode.replaceChild(newBtn, pdfBtn);
+    }
+    
+    // Add direct onclick handler for maximum compatibility
+    newBtn.onclick = function(e) {
+      // No longer preventing default as we're using a direct link
+      console.log('PDF Export button clicked!');
+  */
+      
+      // Create and show loading overlay
+      const loadingOverlay = document.createElement('div');
+      loadingOverlay.className = 'pdf-loading';
+      loadingOverlay.innerHTML = `
+        <div class="pdf-loading-content">
+          <div class="pdf-loading-spinner"></div>
+          <h3>Generating CV</h3>
+          <p>Please wait, this may take a moment...</p>
+        </div>
+      `;
+      document.body.appendChild(loadingOverlay);
+      
+      // Set current theme to light for better PDF output
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      htmlElement.setAttribute('data-theme', 'light');
+      
+      // Create a clone of the content to modify for PDF
+      const contentClone = document.cloneNode(true);
+      const mainContent = contentClone.body;
+      
+      // Remove elements we don't want in the PDF
+      const elementsToRemove = mainContent.querySelectorAll('.theme-toggle, #themeToggle');
+      elementsToRemove.forEach(el => {
+        if (el && el.parentNode) {
+          el.parentNode.removeChild(el);
+        }
+      });
+      
+      // Configure PDF options
+      const options = {
+        margin: [10, 10, 10, 10],
+        filename: 'Jordan_Reynoldson_Portfolio.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+          scale: 2,
+          useCORS: true,
+          logging: false,
+        },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+      
+      // Generate PDF from original document (not clone, as cloning causes issues with styles)
+      // Use a timeout to allow the notification to show before starting the heavy PDF generation
+      setTimeout(() => {
+        // Add a class to the body for PDF specific styling
+        document.body.classList.add('generating-pdf');
+        
+        // Create container for PDF content
+        const mainElement = document.querySelector('main');
+        
+        // Change the filename to CV
+        options.filename = 'Jordan_Reynoldson_CV.pdf';
+        
+        // Ensure html2pdf is available
+        if (typeof html2pdf === 'undefined') {
+          console.error('html2pdf library not loaded!');
+          
+          // Remove loading overlay and show error
+          const loadingOverlay = document.querySelector('.pdf-loading');
+          if (loadingOverlay) loadingOverlay.remove();
+          
+          showNotification('Error: PDF generation library not loaded', 'error');
+          return;
+        }
+        
+        // Generate the PDF with promises
+        html2pdf()
+          .set(options)
+          .from(mainElement)
+          .save()
+          .then(() => {
+            console.log('PDF generation successful');
+            
+            // Restore original theme
+            htmlElement.setAttribute('data-theme', currentTheme);
+            
+            // Remove PDF generation class
+            document.body.classList.remove('generating-pdf');
+            
+            // Remove loading overlay
+            const loadingOverlay = document.querySelector('.pdf-loading');
+            if (loadingOverlay) {
+              loadingOverlay.remove();
+            }
+            
+            // Show success notification
+            showNotification('CV successfully downloaded!', 'success');
+          })
+          .catch((error) => {
+            console.error('PDF generation error:', error);
+            
+            // Restore original theme
+            htmlElement.setAttribute('data-theme', currentTheme);
+            
+            // Remove PDF generation class
+            document.body.classList.remove('generating-pdf');
+            
+            // Remove loading overlay
+            const loadingOverlay = document.querySelector('.pdf-loading');
+            if (loadingOverlay) {
+              loadingOverlay.remove();
+            }
+            
+            // Show error notification
+            showNotification('Error downloading CV. Please try again.', 'error');
+          });
+      }, 100);
+    };
+  
+
