@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Electoral Roll Text Recognition Tool Demo | Jordan Reynoldson</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta name="description" content="Demo of the Electoral Roll Text Recognition Tool developed by Jordan Reynoldson" />
+  <style>
+    .demo-container {
+      max-width: 1000px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+    
+    .back-link i {
+      margin-right: 8px;
+    }
+    
+    .demo-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      margin-bottom: 40px;
+      box-shadow: var(--box-shadow);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--border-radius);
+    }
+    
+    .demo-description {
+      margin-top: 30px;
+      line-height: 1.7;
+    }
+    
+    .features-list {
+      margin-top: 20px;
+    }
+    
+    .features-list li {
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Jordan Reynoldson</h1>
+      <p class="tagline">GIS Specialist</p>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html#about" class="nav-link"><i class="fas fa-user"></i> About</a></li>
+        <li><a href="index.html#education" class="nav-link"><i class="fas fa-graduation-cap"></i> Education</a></li>
+        <li><a href="index.html#experience" class="nav-link"><i class="fas fa-briefcase"></i> Experience</a></li>
+        <li><a href="index.html#portfolio" class="nav-link"><i class="fas fa-code"></i> Portfolio</a></li>
+        <li><a href="index.html#skills" class="nav-link"><i class="fas fa-laptop-code"></i> Skills</a></li>
+        <li><a href="index.html#certifications" class="nav-link"><i class="fas fa-certificate"></i> Certifications</a></li>
+        <li><a href="index.html#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="demo-container">
+      <a href="index.html#portfolio" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+      
+      <h2 class="demo-title">Electoral Roll Text Recognition Tool</h2>
+      
+      <h3>Application Tour</h3>
+      
+      <div class="video-container">
+        <video controls>
+          <source src="https://res.cloudinary.com/dtfqkn1kr/video/upload/v1749129989/bfe0qoru7sew06as1vh2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      
+      <div class="demo-description">
+        <p>The Electoral Roll Text Recognition Tool is an innovative solution I developed for a political party to digitize and analyze electoral records. Traditional manual processing took up to 12.5 hours per document, but this automated solution reduced that time to just 18 minutes, representing a 97% efficiency improvement.</p>
+        
+        <h4>Key Features:</h4>
+        <ul class="features-list">
+          <li><strong>PDF Scanning with OCR:</strong> Utilizes Tesseract OCR to extract voting patterns from scanned PDFs, even with inconsistent markings.</li>
+          <li><strong>Interactive Data Editor:</strong> Built with Flask to provide a user-friendly interface for verifying and correcting extracted data.</li>
+          <li><strong>Geocoding Integration:</strong> Maps voter data geographically to identify patterns by location and generate accurate addresses for targeted communications.</li>
+          <li><strong>Data Analysis:</strong> Provides visualization tools to help campaign managers identify voting trends and participation patterns.</li>
+          <li><strong>Standalone Executable:</strong> Packaged as a simple executable that non-technical staff can use without Python installation or dependencies.</li>
+        </ul>
+        
+        <p>This project demonstrates my ability to combine computer vision, web development, and geospatial technologies to create practical solutions that deliver significant time savings and valuable insights.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-nav">
+        <a href="index.html#about">About</a>
+        <a href="index.html#portfolio">Portfolio</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <p>&copy; 2025 Jordan Reynoldson. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
