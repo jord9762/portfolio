@@ -62,13 +62,99 @@
     .features-list li {
       margin-bottom: 12px;
     }
+    
+    .disclaimer {
+      background-color: #fef2f2;
+      border-left: 4px solid #ef4444;
+      padding: 15px 20px;
+      margin: 30px 0;
+      border-radius: 4px;
+      color: #991b1b;
+    }
+    
+    [data-theme="dark"] .disclaimer {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: #fca5a5;
+    }
+    
+    .feature-gallery {
+      margin-top: 50px;
+    }
+    
+    .feature-gallery h3 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    .gallery-item {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .gallery-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .gallery-caption {
+      padding: 15px 20px;
+      border-top: 1px solid var(--light-gray-color);
+    }
+    
+    .gallery-caption h4 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+    
+    .gallery-caption p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+    
+    .tech-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 25px;
+    }
+    
+    .tech-pill {
+      background-color: var(--light-gray-color);
+      color: var(--text-color);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="header-content">
-      <h1>Jordan Reynoldson</h1>
-      <p class="tagline">GIS Specialist</p>
+      <h1 style="color: white !important;">Jordan Reynoldson</h1>
+      <p class="tagline" style="color: white !important;">GIS Specialist</p>
     </div>
     <nav>
       <ul>
@@ -89,16 +175,12 @@
       
       <h2 class="demo-title">Electoral Roll Text Recognition Tool</h2>
       
-      <h3>Application Tour</h3>
-      
-      <div class="video-container">
-        <video controls>
-          <source src="https://res.cloudinary.com/dtfqkn1kr/video/upload/v1749129989/bfe0qoru7sew06as1vh2.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+      <div class="disclaimer">
+        <p><strong>Confidentiality Notice:</strong> Due to the sensitive nature of electoral data, some elements of this project have been simplified or omitted to maintain confidentiality. The examples shown retain the technical aspects while protecting specific political data.</p>
       </div>
       
       <div class="demo-description">
+        <h3>Project Overview</h3>
         <p>The Electoral Roll Text Recognition Tool is an innovative solution I developed for a political party to digitize and analyze electoral records. Traditional manual processing took up to 12.5 hours per document, but this automated solution reduced that time to just 18 minutes, representing a 97% efficiency improvement.</p>
         
         <h4>Key Features:</h4>
@@ -109,8 +191,86 @@
           <li><strong>Data Analysis:</strong> Provides visualization tools to help campaign managers identify voting trends and participation patterns.</li>
           <li><strong>Standalone Executable:</strong> Packaged as a simple executable that non-technical staff can use without Python installation or dependencies.</li>
         </ul>
+      </div>
+      
+      <h3>Application Tour</h3>
+      
+      <div class="video-container">
+        <video controls>
+          <source src="https://res.cloudinary.com/dtfqkn1kr/video/upload/v1749129989/bfe0qoru7sew06as1vh2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      
+      <div class="feature-gallery">
+        <h3>Technical Implementation Details</h3>
         
-        <p>This project demonstrates my ability to combine computer vision, web development, and geospatial technologies to create practical solutions that deliver significant time savings and valuable insights.</p>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142504/Election_Document_Example_okxeg8.webp" alt="Example Document" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Document Analysis Challenge</h4>
+              <p>The application processes documents with no clear structure and inconsistent metrics. I developed a robust OCR solution using Tesseract and Fitz to handle these variations while maintaining extraction accuracy.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142502/Election_Adding_Records_l6lasb.png" alt="Record Management" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Manual Record Addition</h4>
+              <p>Users can add records directly through the interface when needed, maintaining database integrity while accommodating edge cases where automatic extraction might be insufficient.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142506/Election_Geocoding_records_Records_pm8cbo.png" alt="Geocoding Functionality" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Geocoding & Spatial Analysis</h4>
+              <p>The application maps voter data geographically, allowing clients to understand voting trends by area and inform door-knocking strategies to target swing voters in key constituencies.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142506/Election_Filtering_kot05d.png" alt="Filtering Logic" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Advanced Filtering System</h4>
+              <p>Custom filtering logic enables users to segment voter data by multiple criteria, such as highlighting citizens who haven't voted yet, facilitating targeted engagement campaigns.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142507/Election_Requirements_txncii.png" alt="Technical Requirements" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Technical Requirements</h4>
+              <p>Comprehensive documentation outlines the project's architecture and requirements, ensuring transparency in the solution's design and facilitating future enhancements if needed.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142510/Election_Voter_Turnout_ijd4dx.png" alt="Voter Turnout Map" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Interactive Voter Mapping</h4>
+              <p>The webmap solution visualizes voter turnout patterns using clustered markers for confidentiality at the overview level, with the ability to drill down for more detailed analysis.</p>
+            </div>
+          </div>
+        </div>
+        
+        <h4>Technologies Used:</h4>
+        <div class="tech-pills">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">Flask</span>
+          <span class="tech-pill">Tesseract OCR</span>
+          <span class="tech-pill">Fitz/PyMuPDF</span>
+          <span class="tech-pill">Pillow</span>
+          <span class="tech-pill">PDFPlumber</span>
+          <span class="tech-pill">Folium</span>
+          <span class="tech-pill">Pandas</span>
+          <span class="tech-pill">NumPy</span>
+          <span class="tech-pill">Geocoding API</span>
+          <span class="tech-pill">SQLite</span>
+        </div>
+        
+        <p style="margin-top: 30px;">This project demonstrates my ability to combine computer vision, web development, and geospatial technologies to create practical solutions that deliver significant time savings and valuable insights while handling sensitive data with appropriate confidentiality measures.</p>
       </div>
     </div>
   </main>

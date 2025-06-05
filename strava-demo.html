@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Strava Premium Tool Demo | Jordan Reynoldson</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="demo-styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <meta name="description" content="Demo of the Strava Premium Tool developed by Jordan Reynoldson" />
   <style>
@@ -77,13 +76,69 @@
     .features-list li {
       margin-bottom: 12px;
     }
+    
+    .feature-gallery {
+      margin-top: 50px;
+    }
+    
+    .feature-gallery h3 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    .gallery-item {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .gallery-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .gallery-caption {
+      padding: 15px 20px;
+      border-top: 1px solid var(--light-gray-color);
+    }
+    
+    .gallery-caption h4 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+    
+    .gallery-caption p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+    
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="header-content">
-      <h1>Jordan Reynoldson</h1>
-      <p class="tagline">GIS Specialist</p>
+      <h1 style="color: white !important;">Jordan Reynoldson</h1>
+      <p class="tagline" style="color: white !important;">GIS Specialist</p>
     </div>
     <nav>
       <ul>
@@ -104,6 +159,20 @@
       
       <h2 class="demo-title">Strava Premium Tool</h2>
       
+      <div class="demo-description">
+        <h3>Project Overview</h3>
+        <p>The Strava Premium Tool is a custom fitness analytics platform I developed to replicate and enhance Strava Premium features. By integrating running data visualization with geospatial mapping, this application provides insights that aren't available in standard fitness tracking platforms.</p>
+        
+        <h4>Key Features:</h4>
+        <ul class="features-list">
+          <li><strong>Interactive Data Visualizations:</strong> Plotly-powered charts including pie charts, line graphs, and bar charts to track performance metrics over time.</li>
+          <li><strong>Custom Mapping:</strong> Folium-based maps with Public Rights of Way and forest overlays to analyze running routes in relation to terrain.</li>
+          <li><strong>Advanced Route Analysis:</strong> GPX file parsing with speed-based coloring and elevation DEM overlays to identify performance patterns across different terrains.</li>
+          <li><strong>Multi-technology Stack:</strong> Built with Python, JavaScript, HTML/CSS, and PostgreSQL for a robust and responsive user experience.</li>
+          <li><strong>Personal Data Integration:</strong> Securely connects with the Strava API to import and analyze personal running data.</li>
+        </ul>
+      </div>
+      
       <h3>Application Tour</h3>
       
       <div class="video-container">
@@ -113,18 +182,58 @@
         </video>
       </div>
       
-      <div class="demo-description">
-        <p>The Strava Premium Tool is a custom fitness analytics platform I developed to replicate and enhance Strava Premium features. I tried to replicate all the benefits of Strava premium using Strava's API but went beyond the standard feature set by adding features such as effort score by week and activity mix.</p>
+      <div class="feature-gallery">
+        <h3>Technical Implementation Details</h3>
         
-        <h4>Key Features:</h4>
-        <ul class="features-list">
-          <li><strong>Interactive Data Visualizations:</strong> Plotly-powered charts including pie charts, line graphs, and bar charts to track performance metrics over time. All historic data is included allowing for in depth analysis.</li>
-          <li><strong>Custom Mapping:</strong> Folium-based maps with Public Rights of Way and forest overlays to ive me ideas for new running routes.</li>
-          <li><strong>Multi-technology Stack:</strong> Built with Python, JavaScript, HTML/CSS, and PostgreSQL for a robust and responsive user experience.</li>
-          <li><strong>Personal Data Integration:</strong> Securely connects with the Strava API to import and analyze personal running data. I also recreated Strava's idea for an effort score by creating a composite index comprising of heart rate, time spent doing exercise and distance.</li>
-        </ul>
-        
-        <p>This project showcases my ability to combine my passion for running with technical skills in data visualization, database management, and web development. Was an extremely fun project and I hope to refine it further as I develop my software skills.</p>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142496/Strava_Activity_Mix_i5h9om.png" alt="Activity Mix Analytics" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Activity Mix Analytics</h4>
+              <p>A breakdown of exercise types to help guide training and highlight neglected areas. This visualization helps users maintain a balanced training regimen across different activity types.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142496/Strava_Effort_Score_djult8.png" alt="Effort Score System" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Custom Effort Score System</h4>
+              <p>A proprietary scoring system I designed that quantifies workout intensity based on heart rate data and duration, providing a more comprehensive measure of exercise effort than distance or pace alone.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142497/Strava_Postgres_Schema_fsbay3.png" alt="PostgreSQL Database Schema" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>PostGIS Database Schema</h4>
+              <p>The underlying PostgreSQL/PostGIS database structure that powers the application, organizing all Strava metrics in a normalized schema for efficient querying and spatial analysis.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142497/Strava_Map_Loading_Bar_Javascript_wk59bw.png" alt="Map Loading JavaScript" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Interactive Map Loading System</h4>
+              <p>Custom JavaScript that renders a loading bar while the Folium map initializes, improving user experience by providing visual feedback during complex geospatial data processing.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142500/Strava_SQL_Query_rcvvg0.png" alt="SQL Query Example" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Robust SQL Data Retrieval</h4>
+              <p>Optimized SQL queries that fetch different metrics from the database while handling null values gracefully to prevent visualization errors. This ensures reliable data for the application's charts and graphs.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142501/Strava_Styling_u7bs0e.png" alt="Application Styling" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Brand-Aligned UI Design</h4>
+              <p>Carefully crafted CSS styling using an orange and black color scheme that aligns with Strava's brand identity while maintaining a unique and professional appearance for the application.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -146,4 +255,5 @@
 
   <script src="script.js"></script>
 </body>
+</html>
 </html>

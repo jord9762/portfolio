@@ -16,10 +16,11 @@
   --border-radius: 8px;
   --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
-  --header-bg: #0f172a;
+  --header-bg: #2563eb; /* Change to light blue */
   --header-text: #ffffff;
   --footer-bg: #0f172a;
   --footer-text: #ffffff;
+  --hero-overlay: rgba(37, 99, 235, 0.7); /* Light blue overlay for hero section */
 }
 
 /* Dark Mode Colors */
@@ -39,6 +40,7 @@
   --header-text: #f8fafc;
   --footer-bg: #1e293b;
   --footer-text: #f8fafc;
+  --hero-overlay: rgba(15, 23, 42, 0.8); /* Dark blue overlay for hero section in dark mode */
 }
 
 * {
@@ -131,12 +133,13 @@ header h1 {
   margin: 0;
   font-size: 2.5rem;
   letter-spacing: 1px;
+  color: white !important; /* Force white text in header regardless of theme */
 }
 
 .tagline {
   margin: 5px 0 0;
   font-size: 1.2rem;
-  color: #94a3b8;
+  color: #f8fafc !important; /* Force light color for tagline regardless of theme */
 }
 
 nav ul {
@@ -178,8 +181,8 @@ nav ul li a:hover, nav ul li a.active {
 
 /* Hero Section */
 #hero {
-  background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.8)), 
-              url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80') center/cover;
+  background: linear-gradient(var(--hero-overlay), var(--hero-overlay)), 
+              url('https://res.cloudinary.com/dtfqkn1kr/image/upload/v1747048781/GISNetwork_s95pyy.png') center/cover;
   height: 60vh;
   min-height: 450px;
   color: white;
@@ -396,6 +399,12 @@ section h2 {
   height: 100%;
   object-fit: cover;
   border-radius: var(--border-radius) var(--border-radius) 0 0;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-image img {
+  transform: scale(1.05);
+  filter: brightness(1.05);
 }
 
 .portfolio-details {
@@ -695,4 +704,17 @@ footer {
 @keyframes fadeEffect {
   from { opacity: 0.6; }
   to { opacity: 1; }
+}
+
+/* Gallery images in demo pages */
+.gallery-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.gallery-item:hover .gallery-image {
+  transform: scale(1.05);
+  filter: brightness(1.05);
 }

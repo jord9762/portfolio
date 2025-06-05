@@ -77,13 +77,52 @@
     .features-list li {
       margin-bottom: 12px;
     }
+
+    .feature-gallery {
+      margin-top: 40px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      background-color: var(--light-gray-color);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .gallery-caption {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .gallery-caption h4 {
+      margin: 10px 0;
+      font-size: 1.2rem;
+    }
+
+    .gallery-caption p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--gray-color);
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="header-content">
-      <h1>Jordan Reynoldson</h1>
-      <p class="tagline">GIS Specialist</p>
+      <h1 style="color: white !important;">Jordan Reynoldson</h1>
+      <p class="tagline" style="color: white !important;">GIS Specialist</p>
     </div>
     <nav>
       <ul>
@@ -104,28 +143,101 @@
       
       <h2 class="demo-title">Retro 90's Game</h2>
       
+      <div class="demo-description">
+        <h3>Project Overview</h3>
+        <p>This 2D RPG is a passion project that pays homage to classic 90's Japanese role-playing games while incorporating modern programming techniques and unique features. Built entirely in Python using the Pygame framework, the game demonstrates my ability to architect complex systems and create engaging user experiences.</p>
+        
+        <h4>Key Features:</h4>
+        <ul class="features-list">
+          <li><strong>Turn-Based Combat System:</strong> A comprehensive combat engine with state management for different action phases, damage calculation, and AI decision-making.</li>
+          <li><strong>Dynamic Animation:</strong> Frame-by-frame animation system for characters, spells, and UI elements that responds to game context and player actions.</li>
+          <li><strong>Database Integration:</strong> SQLite backend that manages game items, character progression, and story elements with relational integrity.</li>
+          <li><strong>Strava Integration:</strong> A unique feature that connects real-world fitness metrics from Strava to in-game character attributes, encouraging physical activity.</li>
+          <li><strong>Physics System:</strong> Custom-built physics for world interaction, collision detection, and environmental effects.</li>
+          <li><strong>Asset Pipeline:</strong> Complete workflow for creating, importing, and managing game assets including sprites, sound effects, and music.</li>
+        </ul>
+      </div>
+      
       <h3>Application Tour</h3>
       
       <div class="video-container">
-        <video controls>
+        <video controls muted autoplay loop disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback">
           <source src="https://res.cloudinary.com/dtfqkn1kr/video/upload/v1749133612/rsr5pnkkwzozzo30dsqk.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
       
-      <div class="demo-description">
-        <p>The Retro 90's Game is a passion project that combines my love for classic games with modern programming techniques. Built using Pygame, this 2D RPG features complex game mechanics including enemy AI, animation systems, and database-driven elements such as health, mp and damage.</p>
+      <div class="feature-gallery">
+        <h3>Technical Implementation Details</h3>
         
-        <h4>Key Features:</h4>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142511/JRPG_Animation_Logic_ahek9i.png" alt="Player Animation System" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Advanced Animation System</h4>
+              <p>A sophisticated animation framework that manages sprite sheet rendering based on character state. The system handles different animation types (idle, walk, attack), frame rates, and contextual animations based on character health/status.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142512/JRPG_Bar_State_bszbom.png" alt="UI Bar Animation System" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Dynamic UI Elements</h4>
+              <p>Custom-built animation system for health and status bars that responds to game state changes. Includes visual cues like flashing yellow when limit gauge is full and red flashing for low health situations to add to suspense.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142514/JRPG_Floating_Numbers_y7twzg.png" alt="Damage Number System" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Floating Combat Text</h4>
+              <p>A timing-based system for displaying damage numbers that provides clear feedback without overwhelming the player. Includes cubic easing functions for smooth animation and priority handling for simultaneous events i.e, multiple hits.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142514/JRPG_Font_and_UI_elements_tgf3bf.png" alt="UI and Font System" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Custom UI Framework</h4>
+              <p>Detailed implementation of UI elements that maintains the aesthetic of classic 90's JRPGs while providing modern usability.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142517/JRPG_magic_hit_box_y0usst.png" alt="Magic Animation System" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Multi-layer Animation Coordination</h4>
+              <p>Complex animation sequencing system that synchronizes player casting, spell effects, and enemy damage reactions. Uses a state machine to coordinate the timing of visual effects with gameplay mechanics.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142517/JRPG_Shop_dqmuim.png" alt="Database-Driven Shop System" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>SQL Database Integration</h4>
+              <p>Relational database structure that powers the in-game shop and equipment systems. Uses foreign key relationships to connect items to character stats and progression, enabling dynamic pricing and item availability.</p>
+            </div>
+          </div>
+          
+          <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dtfqkn1kr/image/upload/v1749142517/JRPG_States_dncwpb.png" alt="Game State System" class="gallery-image">
+            <div class="gallery-caption">
+              <h4>Comprehensive State Management</h4>
+              <p>State machine architecture that handles different game phases such as attack sequences, ability activation, hit registration, and damage calculation. Provides a robust framework for complex turn-based combat mechanics.</p>
+            </div>
+          </div>
+        </div>
+        
+        <h4>Technical Architecture:</h4>
+        <p>The game's architecture follows object-oriented design principles with careful separation of concerns between game logic, rendering, input handling, and data management. The codebase demonstrates advanced Python concepts including:</p>
         <ul class="features-list">
-          <li><strong>Game Engine Development:</strong> Custom-built animation, collision detection/hitbox, and game state management systems.</li>
-          <li><strong>Database Integration:</strong> SQLite-backed inventory systems, character stats tracking, and dialogue trees.</li>
-          <li><strong>Strava Integration:</strong> Unique feature that links in-game character stats to real-world fitness achievements from Strava data (work in progress but successfully implemented basic functionality).</li>
-          <li><strong>Custom Asset Design:</strong> Hand-crafted pixel art, animations, and sound effects for an authentic retro feel.</li>
-          <li><strong>Development Documentation:</strong> Regular devlogs and gameplay footage to track the evolution of the game over time.</li>
+          <li>Class inheritance for creating specialized game entities</li>
+          <li>State pattern for managing complex gameplay transitions</li>
+          <li>Observer pattern for event handling and UI updates</li>
+          <li>SQL integration with proper transaction management</li>
+          <li>Asset management with efficient resource loading</li>
+          <li>Frame rate independence for consistent gameplay across different hardware</li>
         </ul>
-
-        <p>This project demonstrates not only my programming skills but also my ability to manage a complex technical project from concept through execution, incorporating database design, UI/UX considerations, and game mechanics into a cohesive product. Despite being a bit removed from GIS this project is probably the hardest one I have ever worked on due to the sheer complexity. I feel it has improved my ability to plan, research and problem-solve effectively. It has also greatly increased my knowledge surrounding both Python and SQL.</p>
       </div>
     </div>
   </main>
@@ -146,5 +258,8 @@
   </button>
 
   <script src="script.js"></script>
+  <script src="demo-scripts.js"></script>
+</body>
+</html>
 </body>
 </html>
